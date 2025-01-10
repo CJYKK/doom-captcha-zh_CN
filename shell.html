@@ -9,18 +9,18 @@
   <!-- OpenGraph -->
   <meta property="og:title" content="DOOM® CAPTCHA" />
   <meta property="og:site_name" content="DOOM® CAPTCHA" />
-  <meta property="og:url" content="https://doom-captcha.vercel.app" />
-  <meta property="og:description" content="Prove you're human by playing DOOM" />
+  <meta property="og:url" content="https://doom-captcha.cjykk.top" />
+  <meta property="og:description" content="通过玩 DOOM 证明你是人类" />
   <meta property="og:type" content="website" />
-  <meta property="og:image" content="https://doom-captcha.vercel.app/card.png" />
+  <meta property="og:image" content="https://doom-captcha.cjykk.top/card.png" />
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:site" content="@rauchg" />
   <meta name="twitter:creator" content="@rauchg" />
   <meta name="twitter:title" content="DOOM® CAPTCHA" />
-  <meta name="twitter:description" content="Prove you're human by playing DOOM" />
-  <meta name="twitter:image" content="https://doom-captcha.vercel.app/card.png" />
+  <meta name="twitter:description" content="通过玩 DOOM 证明你是人类" />
+  <meta name="twitter:image" content="https://doom-captcha.cjykk.top/card.png" />
   <style>
     body,
     html {
@@ -527,102 +527,92 @@
 
 <body>
   <footer class="site-footer">
-    built with
+    使用
     <a href="https://v0.dev/chat/4X85A52Dzde?b=b_tOXbbZzZPgT">v0</a> &
-    <a href="https://vercel.com">vercel</a> <span>/</span>
-    <a href="/" id="how-it-works">how it works</a> <span>/</span>
+    <a href="https://vercel.com">vercel</a>
+    构建 <span>/</span>
+    <a href="/" id="how-it-works">实现原理</a> <span>/</span>
     <a href="https://x.com/rauchg">@rauchg</a>
   </footer>
 
   <div class="modal-backdrop" id="modal-backdrop"></div>
   <div class="modal" id="modal">
     <button class="modal-close" id="modal-close">&times;</button>
-    <h2>How it works</h2>
+    <h2>实现原理</h2>
     <p>
-      A CAPTCHA that lets you play DOOM® to prove you're human (for
-      educational and entertainment purposes)
+      让你通过玩 DOOM® 的方式来证明你是人类（用于教育和娱乐目的）
     </p>
     <p>
-      The project works by leveraging <code>Emscripten</code> to compile a
-      minimal port of Doom to <code>WebAssembly</code> and enable
-      intercommunication between the <code>C</code>-based game runloop (<a
-        href="https://github.com/rauchg/doom-captcha/tree/main/sdldoom-1.10/g_game.c"><code>g_game.c</code></a>) and the
-      <code>JavaScript</code>-based CAPTCHA UI.
+      该项目使用 <code>Emscripten</code> 将 Doom 的最小移植版编译为 <code>WebAssembly</code> 并在基于 <code>C</code> 语言的游戏运行循环（<a
+        href="https://github.com/rauchg/doom-captcha/tree/main/sdldoom-1.10/g_game.c"><code>g_game.c</code></a>）和基于
+      <code>JavaScript</code> 的 CAPTCHA 用户界面之间实现互通。
     </p>
 
     <p>
-      Some extensions were made to the game to introduce relevant events
-      needed for its usage in the context of a CAPTCHA.
+      对游戏进行了一些扩展，以引入在 CAPTCHA 环境中使用游戏所需的相关事件。
     </p>
 
     <ul>
       <li>
-        Started out with a minimal, <code>SDL</code>-based port of Doom that
-        can be efficiently compiled to <code>WebAssembly</code>
+        从基于 <code>SDL</code> 的最小移植版开始，可以高效地编译为 <code>WebAssembly</code>
       </li>
       <li>
-        Tweaked the build to make it compatible with the shareware version of
-        <code>wad</code> (<code>doom1.wad</code>) for legal use
+        调整了版本，使其与 shareware 版本 <code>wad</code>（<code>doom1.wad</code>）兼容，以供合法使用
       </li>
       <li>
-        Introduced new unofficial process flags:
+        引入了新的非官方流程参数：
         <ul>
           <li>
-            <code>-nomenu</code> (<a
-              href="https://github.com/rauchg/doom-captcha/tree/main/sdldoom-1.10/m_menu.c"><code>m_menu.c</code></a>)
-            to skip the main menu and jump straight into the game
+            <code>-nomenu</code>（<a
+              href="https://github.com/rauchg/doom-captcha/tree/main/sdldoom-1.10/m_menu.c"><code>m_menu.c</code></a>）跳过主菜单直接进入游戏
           </li>
           <li>
-            <code>-autoreborn</code> (<a
-              href="https://github.com/rauchg/doom-captcha/tree/main/sdldoom-1.10/p_mobj.c"><code>p_mobj.c</code></a>)
-            to automatically rebirth the player after a 2s delay
+            <code>-autoreborn</code>（<a
+              href="https://github.com/rauchg/doom-captcha/tree/main/sdldoom-1.10/p_mobj.c"><code>p_mobj.c</code></a>）延迟
+            2 秒后自动重生玩家
           </li>
         </ul>
       </li>
       <li>
-        Introduced callbacks into <code>JS</code> land to be used by the
-        CAPTCHA UI:
+        引入回调到 <code>JS</code> 领域以供 CAPTCHA 用户界面使用：
         <ul>
-          <li><code>onPlayerBorn</code> when the player is born or reborn</li>
-          <li><code>onPlayerKilled</code> when the player is killed</li>
+          <li><code>onPlayerBorn</code> 当玩家出生或重生时</li>
+          <li><code>onPlayerKilled</code> 当玩家被击杀时</li>
           <li>
-            <code>onEnemyKilled</code> when the main player kills an enemy
+            <code>onEnemyKilled</code> 当主角杀死敌人时
           </li>
         </ul>
       </li>
       <li>
-        Tweaked the default process flags in
-        <a href="https://github.com/rauchg/doom-captcha/tree/main/sdldoom-1.10/d_main.c"><code>d_main.c</code></a>
-        to make the game more challenging:
+        调整了 <a href="https://github.com/rauchg/doom-captcha/tree/main/sdldoom-1.10/d_main.c"><code>d_main.c</code></a>
+        中的默认进程标志，使游戏更具挑战性：
         <ul>
-          <li><code>-skill 5</code> sets the difficulty to "Nightmare!"</li>
-          <li><code>-fast</code> makes it even harder</li>
+          <li><code>-skill 5</code> 将难度设置为“Nightmare!”</li>
+          <li><code>-fast</code> 雪上加霜</li>
           <li>
-            <code>-warp e1m1</code> jumpstarts the game to where the action is
+            <code>-warp e1m1</code> 跳转到游戏开始的地方
           </li>
           <li>
-            <code>-nomenu</code> doesn't let the player trigger the main menu
+            <code>-nomenu</code> 不让玩家打开主菜单
           </li>
         </ul>
       </li>
     </ul>
 
     <p>
-      <a href="https://v0.dev/chat/4X85A52Dzde?b=b_tOXbbZzZPgT">See the v0 UI generation</a>
-      or
-      <a target="_blank" href="https://github.com/rauchg/doom-captcha">get the source</a>.
+      <a href="https://v0.dev/chat/4X85A52Dzde?b=b_tOXbbZzZPgT">查看 v0 用户界面生成</a>
+      或
+      <a target="_blank" href="https://github.com/rauchg/doom-captcha">获取源代码</a>。
     </p>
 
     <p style="color: #999; font-size: 12px">
-      <em>Built on the shareware version of DOOM® released publically for
-        non-commercial use. DOOM® is a registered trademark of id Software
-        LLC, a ZeniMax Media company.</em>
+      <em>基于公开发布的 DOOM® 共享软件版本，供非商业使用。非商业用途的共享软件版本。DOOM® 是 ZeniMax Media 公司旗下 id Software LLC 的注册商标。</em>
     </p>
   </div>
 
   <label id="debug-toggle">
     <input type="checkbox" id="debug-checkbox" />
-    Debug
+    调试
   </label>
   <div id="debug-container">
     <textarea id="debug-log" readonly></textarea>
@@ -630,12 +620,12 @@
 
   <div class="captcha-container" tabindex="1">
     <div class="captcha-header">
-      <h2>Play DOOM® and kill</h2>
-      <p>at least 3 monsters</p>
+      <h2>玩《DOOM®》并且击杀</h2>
+      <p>至少 3 个怪物</p>
     </div>
 
     <div class="captcha-canvas-container">
-      <div id="status">Downloading...</div>
+      <div id="status">下载中…</div>
       <progress id="progress" value="0" max="100" hidden></progress>
       <canvas class="captcha-canvas" id="canvas" oncontextmenu="event.preventDefault()" tabindex="-1"></canvas>
       <div class="mobile-controls">
@@ -659,9 +649,9 @@
           </svg>
         </button>
       </div>
-      <div class="status-message focus">Tap to play</div>
-      <div class="status-message death">You died! Try again</div>
-      <div class="status-message instructions">Use ↓ ↑ ← → space</div>
+      <div class="status-message focus">点击开始</div>
+      <div class="status-message death">你死了！再试一次</div>
+      <div class="status-message instructions">使用 ↓ ↑ ← → 空格</div>
       <button class="captcha-button captcha-verify-button" aria-label="Verify, 0 out of 3 monsters killed"
         id="verify-button">
         <svg class="captcha-verify-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -761,7 +751,7 @@
       updateVerifyButton();
 
       // Track game start
-      va("event", {name: "game_start"});
+      va("event", { name: "game_start" });
 
       // Call the native DOOM restart function directly
       Module["_G_DoReborn"]();
@@ -804,7 +794,7 @@
       logDebugMessage("CAPTCHA verified successfully");
 
       // Track successful solve
-      va("event", {name: "captcha_solved", data: {kills: enemiesKilled}});
+      va("event", { name: "captcha_solved", data: { kills: enemiesKilled } });
 
       // Pause the game
       Module.pauseMainLoop();
@@ -830,7 +820,7 @@
         confetti({
           particleCount: 100,
           spread: 70,
-          origin: {y: 0.6},
+          origin: { y: 0.6 },
         });
       };
       script.onerror = () => {
@@ -841,23 +831,23 @@
 
     captchaContainer.addEventListener("focus", () => {
       logDebugMessage("CAPTCHA widget focused");
-      va("event", {name: "game_resume"});
+      va("event", { name: "game_resume" });
       Module.resumeMainLoop();
     });
 
     captchaContainer.addEventListener("blur", () => {
       logDebugMessage("CAPTCHA widget unfocused");
-      va("event", {name: "game_pause"});
+      va("event", { name: "game_pause" });
       Module.pauseMainLoop();
     });
 
     // Mobile controls handling
     const mobileControls = {
-      up: {keyCode: 38}, // Arrow Up
-      down: {keyCode: 40}, // Arrow Down
-      left: {keyCode: 37}, // Arrow Left
-      right: {keyCode: 39}, // Arrow Right
-      fire: {keyCode: 32}, // Space
+      up: { keyCode: 38 }, // Arrow Up
+      down: { keyCode: 40 }, // Arrow Down
+      left: { keyCode: 37 }, // Arrow Left
+      right: { keyCode: 39 }, // Arrow Right
+      fire: { keyCode: 32 }, // Space
     };
 
     function ensureGameFocused() {
@@ -897,7 +887,7 @@
       (e) => {
         ensureGameFocused();
       },
-      {passive: false},
+      { passive: false },
     );
 
     // Setup touch controls
@@ -945,7 +935,7 @@
 
             // Treat Spacebar (keyCode 32) as Ctrl
             if (event.keyCode === 32) {
-              return originalLookupKeyCodeForEvent({...event, keyCode: 17});
+              return originalLookupKeyCodeForEvent({ ...event, keyCode: 17 });
             }
 
             // For all other keys, use the original function
@@ -962,7 +952,7 @@
       },
       onPlayerDeath: function () {
         logDebugMessage("Player died");
-        va("event", {name: "player_death", data: {kills: enemiesKilled}});
+        va("event", { name: "player_death", data: { kills: enemiesKilled } });
         enemiesKilled = 0;
         updateVerifyButton();
         document
@@ -972,7 +962,7 @@
       onEnemyKilled: function () {
         logDebugMessage("Enemy killed");
         enemiesKilled++;
-        va("event", {name: "enemy_killed", data: {kills: enemiesKilled}});
+        va("event", { name: "enemy_killed", data: { kills: enemiesKilled } });
         updateVerifyButton();
 
         // Get the icon path
@@ -1020,7 +1010,7 @@
       canvas: canvas,
       setStatus: function (text) {
         if (!Module.setStatus.last)
-          Module.setStatus.last = {time: Date.now(), text: ""};
+          Module.setStatus.last = { time: Date.now(), text: "" };
         if (text === Module.setStatus.last.text) return;
         const m = text.match(/([^(]+)$$(\d+(\.\d+)?)\/(\d+)$$/);
         const now = Date.now();
