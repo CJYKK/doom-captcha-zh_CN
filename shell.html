@@ -1035,7 +1035,7 @@
         this.totalDependencies = Math.max(this.totalDependencies, left);
         Module.setStatus(
           left
-            ? "Preparing... (" +
+            ? "准备中… (" +
             (this.totalDependencies - left) +
             "/" +
             this.totalDependencies +
@@ -1044,9 +1044,9 @@
         );
       },
     };
-    Module.setStatus("Downloading ...");
+    Module.setStatus("下载中…");
     window.onerror = function () {
-      Module.setStatus("Exception thrown, see JavaScript console");
+      Module.setStatus("发生错误，请查看 JavaScript 控制台");
       Module.setStatus = function (text) {
         if (text) Module.printErr("[post-exception status] " + text);
       };
